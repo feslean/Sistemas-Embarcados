@@ -1,0 +1,252 @@
+###############################################################################
+#
+# IAR ELF Linker V8.30.1.114/W32 for ARM                  20/Sep/2018  15:07:14
+# Copyright 2007-2018 IAR Systems AB.
+#
+#    Output file  =  
+#        C:\Users\sirle\Desktop\Tiva_IAR8\asm\Debug\Exe\Modelo_C_asm_IAR8.out
+#    Map file     =  
+#        C:\Users\sirle\Desktop\Tiva_IAR8\asm\Debug\List\Modelo_C_asm_IAR8.map
+#    Command line =  
+#        -f C:\Users\sirle\AppData\Local\Temp\EWFEB1.tmp
+#        (C:\Users\sirle\Desktop\Tiva_IAR8\asm\Debug\Obj\asm.o
+#        C:\Users\sirle\Desktop\Tiva_IAR8\asm\Debug\Obj\cstartup_M.o
+#        C:\Users\sirle\Desktop\Tiva_IAR8\asm\Debug\Obj\main.o
+#        --no_out_extension -o
+#        C:\Users\sirle\Desktop\Tiva_IAR8\asm\Debug\Exe\Modelo_C_asm_IAR8.out
+#        --map
+#        C:\Users\sirle\Desktop\Tiva_IAR8\asm\Debug\List\Modelo_C_asm_IAR8.map
+#        --config
+#        C:\Users\sirle\Desktop\Tiva_IAR8\asm\linker\generic_cortex.icf
+#        --semihosting --entry __iar_program_start --vfe --text_out locale)
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+CppFlavor       = *
+__Heap_Handler  = NoFree
+__SystemLibrary = DLib
+__dlib_version  = 6
+
+
+*******************************************************************************
+*** HEAP SELECTION
+***
+
+The no free heap was selected because no calls to memory
+deallocation functions were found in the application.
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A0":  place at 0x0 { ro section .intvec };
+"P1":  place in [from 0x0 to 0x2fb] |
+                [from 0x300 to 0xfff'ffff] { ro };
+define block CSTACK with size = 3840, alignment = 8 { };
+define block HEAP with size = 512K, alignment = 8 { };
+"P2":  place in [from 0x1000'0000 to 0x1fff'ffff] {
+          rw, block CSTACK, block HEAP };
+"P3":  place in [from 0x2fc to 0x2ff] { section .crp };
+initialize by copy { rw };
+
+  Section            Kind         Address     Size  Object
+  -------            ----         -------     ----  ------
+"A0":                                        0x124
+  .intvec            ro code          0x0    0x124  cstartup_M.o [1]
+                                  - 0x124    0x124
+
+"P1", part 1 of 2:                            0x20
+  .rodata            const          0x124      0x0  copy_init3.o [4]
+  Initializer bytes  const          0x124      0x4  <for P3 s0>
+  Initializer bytes  const          0x128     0x1c  <for P2 s1>
+                                  - 0x144     0x20
+
+"P3":                                          0x4
+  P3 s0                             0x2fc      0x4  <Init block>
+    .crp             inited         0x2fc      0x4  cstartup_M.o [1]
+                                  - 0x300      0x4
+
+"P1", part 2 of 2:                           0x310
+  .text              ro code        0x300     0xc6  asm.o [1]
+  .text              ro code        0x3c6      0x2  cstartup_M.o [1]
+  .text              ro code        0x3c8     0xb8  main.o [1]
+  .text              ro code        0x480      0x4  time_trampoline.o [2]
+  .text              ro code        0x484     0x10  rand.o [2]
+  .text              ro code        0x494     0x48  no_free_heap0.o [2]
+  .text              ro code        0x4dc     0x12  time.o [5]
+  .text              ro code        0x4f0     0x2c  xgetmemchunk.o [2]
+  .text              ro code        0x51c     0x2c  copy_init3.o [4]
+  .text              ro code        0x548     0x28  data_init.o [4]
+  .text              ro code        0x570     0x22  fpinit_M.o [3]
+  .iar.init_table    const          0x594     0x28  - Linker created -
+  .text              ro code        0x5bc     0x1e  cmain.o [4]
+  .text              ro code        0x5da      0x4  low_level_init.o [2]
+  .text              ro code        0x5de      0x4  exit.o [2]
+  .text              ro code        0x5e4      0xa  cexit.o [4]
+  .text              ro code        0x5f0     0x14  exit.o [5]
+  .text              ro code        0x604      0xc  cstartup_M.o [4]
+                                  - 0x610    0x310
+
+"P2", part 1 of 2:                            0x1c
+  P2 s1                       0x1000'0000     0x1c  <Init block>
+    .data            inited   0x1000'0000      0x8  rand.o [2]
+    .bss             inited   0x1000'0008      0x4  main.o [1]
+    .bss             inited   0x1000'000c      0x4  main.o [1]
+    .bss             inited   0x1000'0010      0x4  main.o [1]
+    .bss             inited   0x1000'0014      0x4  no_free_heap0.o [2]
+    .bss             inited   0x1000'0018      0x4  xgetmemchunk.o [2]
+                            - 0x1000'001c     0x1c
+
+"P2", part 2 of 2:                         0x80f00
+  CSTACK                      0x1000'0020    0xf00  <Block>
+    CSTACK           uninit   0x1000'0020    0xf00  <Block tail>
+  HEAP                        0x1000'0f20  0x80000  <Block>
+    HEAP             uninit   0x1000'0f20  0x80000  <Block tail>
+                            - 0x1008'0f20  0x80f00
+
+Unused ranges:
+
+         From           To        Size
+         ----           --        ----
+        0x144        0x2fb       0x1b8
+        0x610   0xfff'ffff  0xfff'f9f0
+  0x1000'001c  0x1000'001f         0x4
+  0x1008'0f20  0x1fff'ffff  0xff7'f0e0
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address      Size
+          -------      ----
+Copy (__iar_copy_init3)
+    1 source range, total size 0x4:
+                0x124   0x4
+    1 destination range, total size 0x4:
+                0x2fc   0x4
+
+Copy (__iar_copy_init3)
+    1 source range, total size 0x1c:
+                0x128  0x1c
+    1 destination range, total size 0x1c:
+          0x1000'0000  0x1c
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module             ro code  ro data  rw data
+    ------             -------  -------  -------
+command line/config:
+    --------------------------------------------
+    Total:
+
+C:\Users\sirle\Desktop\Tiva_IAR8\asm\Debug\Obj: [1]
+    asm.o                  198
+    cstartup_M.o           294        4        4
+    main.o                 184       12       12
+    --------------------------------------------
+    Total:                 676       16       16
+
+dl7M_tln.a: [2]
+    exit.o                   4
+    low_level_init.o         4
+    no_free_heap0.o         72        4        4
+    rand.o                  16        8        8
+    time_trampoline.o        4
+    xgetmemchunk.o          44        4        4
+    --------------------------------------------
+    Total:                 144       16       16
+
+m7M_tls.a: [3]
+    fpinit_M.o              34
+    --------------------------------------------
+    Total:                  34
+
+rt7M_tl.a: [4]
+    cexit.o                 10
+    cmain.o                 30
+    copy_init3.o            44
+    cstartup_M.o            12
+    data_init.o             40
+    --------------------------------------------
+    Total:                 136
+
+shb_l.a: [5]
+    exit.o                  20
+    time.o                  18
+    --------------------------------------------
+    Total:                  38
+
+    Gaps                     6        2
+    Linker created                   40  528 128
+------------------------------------------------
+    Grand Total:         1 034       74  528 160
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                       Address  Size  Type      Object
+-----                       -------  ----  ----      ------
+.iar.init_table$$Base         0x594         --   Gb  - Linker created -
+.iar.init_table$$Limit        0x5bc         --   Gb  - Linker created -
+?main                         0x5bd        Code  Gb  cmain.o [4]
+CSTACK$$Base            0x1000'0020         --   Gb  - Linker created -
+CSTACK$$Limit           0x1000'0f20         --   Gb  - Linker created -
+HEAP$$Base              0x1000'0f20         --   Gb  - Linker created -
+HEAP$$Limit             0x1008'0f20         --   Gb  - Linker created -
+Region$$Table$$Base           0x594         --   Gb  - Linker created -
+Region$$Table$$Limit          0x5bc         --   Gb  - Linker created -
+_Randinit               0x1000'0000   0x1  Data  Gb  rand.o [2]
+_Randseed               0x1000'0004   0x4  Data  Gb  rand.o [2]
+__cmain                       0x5bd        Code  Gb  cmain.o [4]
+__data_GetMemChunk            0x4f1  0x2c  Code  Gb  xgetmemchunk.o [2]
+__data_GetMemChunk::start
+                        0x1000'0018   0x4  Data  Lc  xgetmemchunk.o [2]
+__exit                        0x5f1  0x14  Code  Gb  exit.o [5]
+__iar_copy_init3              0x51d  0x2c  Code  Gb  copy_init3.o [4]
+__iar_data_init3              0x549  0x28  Code  Gb  data_init.o [4]
+__iar_init_vfp                0x571        Code  Gb  fpinit_M.o [3]
+__iar_program_start           0x605        Code  Gb  cstartup_M.o [4]
+__low_level_init              0x5db   0x4  Code  Gb  low_level_init.o [2]
+__no_free_malloc              0x495  0x44  Code  Gb  no_free_heap0.o [2]
+__time32                      0x4dd  0x12  Code  Gb  time.o [5]
+__vector_table                  0x0        Data  Gb  cstartup_M.o [1]
+__vector_table_0x1c            0x1c        Data  Gb  cstartup_M.o [1]
+_call_main                    0x5c9        Code  Gb  cmain.o [4]
+_exit                         0x5e5        Code  Gb  cexit.o [4]
+_main                         0x5d7        Code  Gb  cmain.o [4]
+aloc                          0x447  0x2e  Code  Gb  main.o [1]
+dim                     0x1000'0008   0x4  Data  Gb  main.o [1]
+exit                          0x5df   0x4  Code  Gb  exit.o [2]
+main                          0x3c9  0x7e  Code  Gb  main.o [1]
+median                        0x301        Code  Gb  asm.o [1]
+qs                      0x1000'0014   0x4  Data  Lc  no_free_heap0.o [2]
+srand                         0x485   0xa  Code  Gb  rand.o [2]
+time                          0x481   0x4  Code  Gb  time_trampoline.o [2]
+vec_in                  0x1000'000c   0x4  Data  Gb  main.o [1]
+vec_out                 0x1000'0010   0x4  Data  Gb  main.o [1]
+
+
+[1] = C:\Users\sirle\Desktop\Tiva_IAR8\asm\Debug\Obj
+[2] = dl7M_tln.a
+[3] = m7M_tls.a
+[4] = rt7M_tl.a
+[5] = shb_l.a
+
+    1 034 bytes of readonly  code memory
+       74 bytes of readonly  data memory
+  528 160 bytes of readwrite data memory
+
+Errors: none
+Warnings: none
